@@ -5,13 +5,15 @@
   "type": "module",
   "main": "lib/index.js",
   "scripts": {
+    "start": "node server.js",
     "process": "node scripts/process-articles.js",
     "generate": "node scripts/generate-podcast.js",
     "status": "node scripts/notion-status.js",
     "test": "node --test test/*.test.js"
   },
   "dependencies": {
-    "@notionhq/client": "^2.2.0"
+    "@notionhq/client": "^2.2.0",
+    "express": "^5.2.1"
   },
   "engines": {
     "node": ">=18.0.0"

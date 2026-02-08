@@ -3,8 +3,7 @@
  * Process all new articles from Notion database
  */
 
-import { config, notion, content, scriptGen, tts } from '../lib/index.js';
-import { uploadToGitHub } from '../lib/upload.js';
+import { config, notion, content, scriptGen, tts, uploadToGitHub } from '../lib/index.js';
 import { join } from 'path';
 
 async function processArticle(article) {

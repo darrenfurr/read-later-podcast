@@ -4,6 +4,7 @@
  */
 
 import { config, notion, content, scriptGen, tts } from '../lib/index.js';
+import { uploadToGitHub } from '../lib/upload.js';
 import { join } from 'path';
 
 async function processArticle(article) {
@@ -50,11 +51,12 @@ async function processArticle(article) {
     
     console.log(`\n✅ Podcast created: ${podcastPath}`);
     
-    // 6. Update Notion with results
-    // Note: For now, podcast link is local path. 
-    // TODO: Upload to S3/cloud storage and use that URL
+    // 6. Upload to GitHub for public access
+    const publicUrl = await uploadToGitHub(podcastPath, slug);
+    
+    // 7. Update Notion with public URL
     await notion.markComplete(article.id, {
-      podcastUrl: podcastPath, // Replace with uploaded URL
+      podcastUrl: publicUrl,
       category,
       title: finalArticle.title,
     });

@@ -6,6 +6,7 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "node server.js",
+    "webhook": "node webhook-server.js",
     "process": "node scripts/process-articles.js",
     "generate": "node scripts/generate-podcast.js",
     "status": "node scripts/notion-status.js",

@@ -1,0 +1,21 @@
+{
+  "name": "read-later-podcast",
+  "version": "1.0.0",
+  "description": "Convert saved articles to engaging AI-generated podcasts",
+  "type": "module",
+  "main": "lib/index.js",
+  "scripts": {
+    "process": "node scripts/process-articles.js",
+    "generate": "node scripts/generate-podcast.js",
+    "status": "node scripts/notion-status.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "Friday <friday@darrenfurr.com>",
+  "license": "MIT"
+}

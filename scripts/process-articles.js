@@ -94,15 +94,15 @@ async function main() {
   }
   
   try {
-    // Get new articles
-    const articles = await notion.getNewArticles();
+    // Get new articles (limit to 5 per run to avoid overwhelming the system)
+    const articles = await notion.getNewArticles(5);
     
     if (articles.length === 0) {
       console.log('No new articles to process.');
       return;
     }
     
-    console.log(`Found ${articles.length} new article(s) to process.\n`);
+    console.log(`Found ${articles.length} new article(s) to process (max 5 per run).\n`);
     
     // Process each article
     const results = [];

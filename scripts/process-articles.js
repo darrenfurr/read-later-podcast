@@ -83,7 +83,7 @@ async function main() {
   
   // Check environment
   if (!config.notion.apiKey) {
-    console.error('Error: NOTION_API_KEY not set');
+    console.error('Error: NOTION_KEY not set');
     process.exit(1);
   }
   

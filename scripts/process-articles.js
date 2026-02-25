@@ -18,6 +18,14 @@ async function processArticle(article) {
     // 1. Fetch article content
     const fetchedArticle = await content.fetchArticle(article.url);
     console.log(`Fetched: "${fetchedArticle.title}" (${fetchedArticle.wordCount} words)`);
+
+    // Guard: skip bot-blocked / paywalled pages (e.g. Medium Cloudflare challenge)
+    if (fetchedArticle.wordCount < 50) {
+      const reason = `Fetch returned only ${fetchedArticle.wordCount} words — likely paywalled or bot-blocked. Mark this article as Error in Notion and add it manually or use a different URL.`;
+      console.error(`⚠️  Skipping: ${reason}`);
+      await notion.markError(article.id, reason);
+      return { success: false, error: reason };
+    }
     
     // 2. Detect category
     const category = content.detectCategory(fetchedArticle.content, fetchedArticle.title);
